@@ -897,6 +897,12 @@ projects:
   license: ISC
   labels: [plugin]
   category: html-css
+- name: mkdocs-tablestrip
+  github_id: SaltyAimbOtter/mkdocs-tablestrip
+  pypi_id: mkdocs-tablestrip
+  license: MIT
+  labels: [plugin]
+  category: html-css
 
 - name: static-i18n
   mkdocs_plugin: i18n
