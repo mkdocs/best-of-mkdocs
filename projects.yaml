@@ -1815,3 +1815,8 @@ projects:
   pypi_id: markdown-version-annotations
   labels: [markdown]
   category: snippets-include
+- name: mkdocs-snippets
+  github_id: BetonQuest/mkdocs-snippets
+  pypi_id: mkdocs-snippets
+  labels: [plugin]
+  category: snippets-include
