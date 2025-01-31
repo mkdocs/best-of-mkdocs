@@ -1,0 +1,54 @@
+site_name: {{ theme.name }}
+theme: {{ theme.mkdocs_id }}
+
+markdown_extensions:
+- attr_list
+- admonition
+- footnotes
+- pymdownx.blocks.admonition
+- pymdownx.blocks.details
+- pymdownx.blocks.tab
+- pymdownx.emoji
+- pymdownx.keys
+- pymdownx.magiclink
+- pymdownx.snippets:
+    check_paths: true
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.tasklist:
+    custom_checkbox: true
+
+plugins:
+- search
+- mkdocstrings:
+    handlers:
+      python:
+        paths: [src]
+        import: [https://docs.python.org/3/objects.inv]
+        options:
+          docstring_options:
+            ignore_init_summary: true
+          docstring_section_style: list
+          heading_level: 1
+          inherited_members: true
+          merge_init_into_class: true
+          separate_signature: true
+          show_root_heading: true
+          show_root_full_path: false
+          show_source: false
+          show_signature_annotations: true
+          show_symbol_type_heading: true
+          show_symbol_type_toc: true
+          signature_crossrefs: true
+          summary: true
+
+nav:
+- Gallery: ../../
+- Python package docs: reference.md
+- Themes:
+{%- for theme in themes %}
+  - "{{ theme.name }}": ../{{ theme.mkdocs_id }}
+{%- endfor %}

@@ -1,0 +1,61 @@
+name: Gallery
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - uses: actions/cache@v3
+      name: Cache/restore pip data
+      with:
+        path: ~/.cache/pip
+        key: pip
+
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+
+    - name: Cache/restore Playwright browsers
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/ms-playwright/
+        key: playwright
+
+    - name: Install Playwright dependencies
+      run: shot-scraper install
+
+    - name: Build everything
+      run: python build_gallery.py
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: gallery
+
+  deploy:
+    if: github.event_name == 'push' && github.ref_name == github.event.repository.default_branch
+    needs: build
+    concurrency:
+      group: "pages"
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}

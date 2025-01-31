@@ -1,0 +1,7 @@
+black
+jinja2
+mkdocs-get-deps
+mkdocs-material
+pyyaml
+shot-scraper
+tqdm

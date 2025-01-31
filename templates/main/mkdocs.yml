@@ -1,0 +1,25 @@
+site_name: Gallery
+site_url: https://mkdocs.github.io/catalog
+site_dir: gallery
+
+theme:
+  name: material
+  logo: assets/logo.png
+  palette:
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: blue
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: blue
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+
+markdown_extensions:
+  - attr_list
+  - toc:
+      permalink: true

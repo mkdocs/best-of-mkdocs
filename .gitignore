@@ -1,3 +1,10 @@
+# Specific to this project
+/logs/
+/themes/
+/gallery/
+/docs/
+/mkdocs.yml
+
 # IntelliJ
 target/
 .idea/
